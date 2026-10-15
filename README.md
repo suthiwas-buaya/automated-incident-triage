@@ -1,64 +1,66 @@
 # Automated Incident Triage
 
-ระบบตรวจจับ fault บนเครือข่ายอัตโนมัติ → สร้าง Trouble Ticket → จำแนกว่าทีมไหนควรรับผิดชอบ → วินิจฉัยสาเหตุ
-โปรเจกต์วิชา ENE372/473 · มจธ. (KMUTT)
+Automatically detects network faults → opens a Trouble Ticket → classifies which team owns it → diagnoses the root cause.
+Course project for ENE372/473, King Mongkut's University of Technology Thonburi (KMUTT).
 
-## ระบบทำอะไร
+## How it works
 
 ```
-Router (Cisco IOL ใน CML) ──syslog UDP 514──▶ syslog_server.py ──▶ tickets.db (SQLite)
-                                                 │ จำแนกทีม + ความด่วน + รวมเหตุที่เกี่ยวกัน
+Routers (Cisco IOL in CML) ──syslog UDP 514──▶ syslog_server.py ──▶ tickets.db (SQLite)
+                                                 │ classify owner group + priority, correlate related events
                                                  ▼
-                              diagnose_worker.py ── SSH เข้า Router รัน show command → สรุปสาเหตุด้วยกฎ
-                              analyze_pending.py ── เคสที่กฎสรุปไม่ได้ ส่งให้ LLM (Ollama) ช่วยวิเคราะห์
+                              diagnose_worker.py ── SSH into routers, run show commands → rule-based root cause
+                              analyze_pending.py ── cases the rules can't explain go to an LLM (Ollama)
                                                  ▼
-                              dashboard/ (Flask + vanilla JS) ── เจ้าหน้าที่ยืนยัน/แก้ทีมที่ระบบจำแนก
+                              dashboard/ (Flask + vanilla JS) ── operators confirm or correct the classification
 ```
 
-- **Ticket เปิด/ปิดเอง** จาก syslog `%LINK-*` (`down` → เปิด, `up` → ปิด)
-- **จำแนก Owner Group + Priority** ด้วยกฎ keyword (word boundary) และยกระดับตามผลกระทบ (Site หลุดทั้ง Site → ≥ P2)
-- **วินิจฉัยสาเหตุ** แบบ Hybrid: กฎก่อน แล้วค่อยใช้ LLM เฉพาะเคสที่กฎไม่ครอบคลุม
-- **Human-in-the-loop**: ระบบเสนอทีม แต่คนต้องกดยืนยันบน Dashboard
+- **Tickets open and close automatically** from `%LINK-*` syslog messages (`down` → open, `up` → close)
+- **Owner group + priority classification** using keyword rules (word-boundary matching), escalated by impact (a whole site down → at least P2)
+- **Hybrid root-cause analysis**: rules first, LLM only for cases the rules don't cover
+- **Human-in-the-loop**: the system suggests a team, but an operator must confirm it on the dashboard
 
-## โครงสร้าง
+## Project layout
 
-| ส่วน | ไฟล์ |
+| Part | Files |
 | :-- | :-- |
-| ตัวหลัก | `syslog_server.py`, `diagnose_worker.py`, `analyze_pending.py` |
-| จำลอง fault | `fault_injection.py`, `inject_menu.py`, `c06_congestion.py` |
-| ไลบรารี | `lib/` — parser, classifier, correlation, diagnostics, cause rules, LLM client ฯลฯ |
+| Core services | `syslog_server.py`, `diagnose_worker.py`, `analyze_pending.py` |
+| Fault injection | `fault_injection.py`, `inject_menu.py`, `c06_congestion.py` |
+| Library | `lib/` — syslog parser, classifier, correlation, diagnostics, cause rules, LLM client, etc. |
 | Dashboard | `dashboard/backend/app.py` (Flask API), `dashboard/frontend/` |
-| ทดสอบ/วัดผล | `measure_latency.py`, `run_*_batch.py`, `test_dispositions.py`, `replay_syslog.py`, `testcases/`, `tools/` |
-| ปุ่มลัด Windows | `0_` – `8_*.bat` |
+| Testing / measurement | `measure_latency.py`, `run_*_batch.py`, `test_dispositions.py`, `replay_syslog.py`, `testcases/`, `tools/` |
+| Windows shortcuts | `0_` – `8_*.bat` |
 
-## ติดตั้ง
+Code comments and console output are in Thai.
 
-ต้องมี Python 3 (บน Windows ใช้คำสั่ง `py`)
+## Setup
+
+Requires Python 3 (on Windows the command is `py`).
 
 ```bat
 py -m pip install -r requirements.txt
 copy lib\lab_secrets.example.py lib\lab_secrets.py
 ```
 
-แล้วแก้ `lib\lab_secrets.py` ใส่ username/password ของ Router ใน lab
-ที่อยู่ IP / port ของอุปกรณ์ตั้งใน `lib/mapping.py` (`DEVICE_SSH`) และ `fault_injection.py` (`CORE`)
+Then edit `lib\lab_secrets.py` with the router username/password for your lab.
+Device IPs and ports are set in `lib/mapping.py` (`DEVICE_SSH`) and `fault_injection.py` (`CORE`).
 
-ถ้าจะใช้ส่วนวิเคราะห์ด้วย LLM ต้องติดตั้ง [Ollama](https://ollama.com) และโหลดโมเดล `llama3.1:8b`
+The LLM analysis step needs [Ollama](https://ollama.com) with the `llama3.1:8b` model pulled.
 
-## วิธีรัน
+## Running
 
-เปิดหลายหน้าต่างพร้อมกัน (หรือดับเบิลคลิก `.bat` ตามเลข):
+Open several terminals at once (or double-click the numbered `.bat` files):
 
-| หน้าต่าง | คำสั่ง | |
+| Terminal | Command | |
 | :-- | :-- | :-- |
-| 1 | `py syslog_server.py` | ฟัง syslog — ค้างไว้ |
-| 2 | `py diagnose_worker.py` | วินิจฉัยผ่าน SSH — ค้างไว้ |
-| 3 | `py dashboard\backend\app.py` | API ของ Dashboard แล้วเปิด `dashboard\frontend\index.html` |
-| 4 | `py inject_menu.py` | ยิง fault ทดสอบ |
+| 1 | `py syslog_server.py` | Listens for syslog — keep running |
+| 2 | `py diagnose_worker.py` | SSH diagnosis — keep running |
+| 3 | `py dashboard\backend\app.py` | Dashboard API, then open `dashboard\frontend\index.html` |
+| 4 | `py inject_menu.py` | Inject test faults |
 
-ทดสอบส่วน logic โดยไม่ต้องเปิด lab: `py lib\<ชื่อไฟล์>.py` (ทุกไฟล์ใน `lib/` มี unit test ด้วยข้อมูลจำลอง)
+Test the logic without the lab: `py lib\<file>.py` (every module in `lib/` has unit tests with sample data).
 
 ## Lab
 
-Topology แบบ Star บน Cisco Modeling Labs (CML): Core 1 ตัว + Access Site A/B/C ต่อเข้า Core คนละเส้น
-fault ต้องยิงที่ Core เท่านั้น เพราะ IOL ไม่ส่งต่อการขาดของสัญญาณไปอีกฝั่ง
+Star topology on Cisco Modeling Labs (CML): one Core router, with Access Sites A/B/C each connected to the Core on its own link.
+Faults must be injected on the Core, because IOL does not propagate carrier loss to the far end of a link.
