@@ -5,14 +5,21 @@ Course project for ENE372/473, King Mongkut's University of Technology Thonburi 
 
 ## How it works
 
-```
-Routers (Cisco IOL in CML) ──syslog UDP 514──▶ syslog_server.py ──▶ tickets.db (SQLite)
-                                                 │ classify owner group + priority, correlate related events
-                                                 ▼
-                              diagnose_worker.py ── SSH into routers, run show commands → rule-based root cause
-                              analyze_pending.py ── cases the rules can't explain go to an LLM (Ollama)
-                                                 ▼
-                              dashboard/ (Flask + vanilla JS) ── operators confirm or correct the classification
+```text
+Routers (CML lab)
+   │  syslog, UDP 514
+   ▼
+syslog_server.py    open/close ticket, classify team + priority
+   │
+   ▼
+tickets.db (SQLite)
+   │
+   ├─▶ diagnose_worker.py   SSH in, find root cause with rules
+   │      │  rules can't explain it
+   │      ▼
+   │   analyze_pending.py   ask a local LLM (Ollama)
+   │
+   └─▶ Dashboard            operator confirms or corrects the team
 ```
 
 - **Tickets open and close automatically** from `%LINK-*` syslog messages (`down` → open, `up` → close)
