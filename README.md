@@ -3,6 +3,10 @@
 Automatically detects network faults → opens a Trouble Ticket → classifies which team owns it → diagnoses the root cause.
 Course project for ENE372/473, King Mongkut's University of Technology Thonburi (KMUTT).
 
+![Analyze page of the dashboard: quick status on the left, rule-based root cause with raw device output on the right](images/dashboard-analyze.png)
+
+*A real ticket from the lab. Core's link to Site A was shut down. The left side shows what the system decided in under a second (priority P2 because the whole site was cut off). The right side shows the root cause found over SSH, next to the unmodified router output it was based on.*
+
 ## How it works
 
 ```text
@@ -26,6 +30,30 @@ tickets.db (SQLite)
 - **Owner group + priority classification** using keyword rules (word-boundary matching), escalated by impact (a whole site down → at least P2)
 - **Hybrid root-cause analysis**: rules first, LLM only for cases the rules don't cover
 - **Human-in-the-loop**: the system suggests a team, but an operator must confirm it on the dashboard
+
+## Results
+
+Measured on the CML lab in August 2026, against targets set in the project proposal.
+
+| What was measured | Target | Result |
+| :-- | :-- | :-- |
+| Time from syslog event to ticket shown with team + priority | ≤ 5 s | **0.97 s average, 1.60 s worst** (40 runs, 20 Aug) |
+| Team classification accepted by the operator without correction | ≥ 80% | **97.4%** (38 of 39 reference cases) |
+| Tickets the system closed on its own without a human | 0% | **0%** |
+| Tickets showing the raw, unmodified device output next to the analysis | 100% | **100%** (111 of 111 tickets) |
+| Software licence cost | 0 baht | **0 baht** |
+
+Timing is measured from the timestamp inside the router's syslog message. The router clocks ran 0.3–1.6 s behind the PC, so the real times are slightly shorter than the numbers above.
+
+For root-cause analysis I fed the same 13 test cases to three approaches (`llama3.1:8b`, temperature 0):
+
+| | Rules only | LLM only | Hybrid (this project) |
+| :-- | --: | --: | --: |
+| Correct answer | 8/13 (62%) | 7/13 (54%) | **11/13 (85%)** |
+| Made-up answer when it should have said "not enough data" | **0** | 6 | 1 |
+| Average time per case | **0.00 s** | 7.15 s | 6.89 s |
+
+The hybrid approach only calls the LLM when the rules can't explain a fault, and then checks that what the model cites actually appears in the device output. 12 of the 13 cases are simulated. On the one case built from real lab output, the hybrid still gave a wrong answer: the model quoted a number that does exist in the output, but the wrong one, so the check let it through. Expect real-world accuracy to be lower than 85%.
 
 ## Project layout
 
@@ -66,6 +94,10 @@ Open several terminals at once (or double-click the numbered `.bat` files):
 | 4 | `py inject_menu.py` | Inject test faults |
 
 Test the logic without the lab: `py lib\<file>.py` (every module in `lib/` has unit tests with sample data).
+
+## My role
+
+Solo project. I designed and built all of it: the CML lab and router config, the syslog-to-ticket pipeline, the classification and correlation rules, SSH diagnosis and the hybrid rule + LLM analysis, the Flask dashboard, and the test and measurement scripts used for the results above.
 
 ## Lab
 
