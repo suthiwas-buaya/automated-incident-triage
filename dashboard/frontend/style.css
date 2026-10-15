@@ -1,0 +1,1191 @@
+:root {
+  color-scheme: light;
+
+  --bg-page: #f4f5f7;
+  --bg-surface: #ffffff;
+  --bg-surface-hover: #f3f4f6;
+  --bg-subtle: #eef0f3;
+  --bg-row-hover: #f9fafb;
+
+  --border: #e2e5eb;
+  --border-strong: #d8dce3;
+  --border-hover: #c7cdd6;
+  --divider-subtle: #f0f0f0;
+
+  --text-primary: #111827;
+  --text-secondary: #374151;
+  --text-tertiary: #475569;
+  --text-muted: #6b7280;
+  --text-faint: #9ca3af;
+  --text-placeholder: #c7ccd4;
+
+  --link: #334155;
+  --link-hover: #1e293b;
+
+  --accent: #2354a6;
+  --accent-rgb: 35, 84, 166;
+  --accent-ink: #1e293b;
+  --accent-ink-hover: #0f172a;
+
+  --danger: #b42318;
+  --danger-bg: #fef2f2;
+  --danger-bg-hover: #fde8e8;
+  --danger-border: #fecaca;
+
+  --success: #227a4c;
+  --success-bg: #ecfdf3;
+  --success-border: #a9d9b8;
+
+  --avatar-bg: #e2e5eb;
+  --avatar-text: #475569;
+
+  --shadow-rgb: 20, 30, 55;
+  --overlay-rgb: 17, 24, 39;
+
+  --status-assigned-bg: #fde9d0;   --status-assigned-text: #9a5b16;
+  --status-progress-bg: #dbe8fd;   --status-progress-text: #2354a6;
+  --status-resolved-bg: #e5ddfb;   --status-resolved-text: #5b3ca6;
+  --status-closed-bg: #d9f0e1;     --status-closed-text: #227a4c;
+
+  --status-dot-assigned: #f5b8b0;
+  --status-dot-progress: #f8cd9c;
+  --status-dot-resolved: #c9b8f0;
+  --status-dot-closed: #a9d9b8;
+
+  --priority-warning-row: #ffe6a3;
+  --priority-warning-row-hover: #ffd97d;
+  --priority-warning-badge-bg: #fff3d6;
+  --priority-warning-badge-text: #7a4a05;
+
+  --priority-critical-row: #f7c3c3;
+  --priority-critical-row-hover: #f3aaaa;
+  --priority-critical-badge-bg: #fde0e0;
+  --priority-critical-badge-text: #8f1b12;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --bg-page: #0f1420;
+    --bg-surface: #161b28;
+    --bg-surface-hover: #1f2534;
+    --bg-subtle: #1c2230;
+    --bg-row-hover: #1a202e;
+
+    --border: #262d3d;
+    --border-strong: #323a4d;
+    --border-hover: #454f66;
+    --divider-subtle: #1f2534;
+
+    --text-primary: #eef1f6;
+    --text-secondary: #c3c9d6;
+    --text-tertiary: #a7afc2;
+    --text-muted: #8993a8;
+    --text-faint: #626b81;
+    --text-placeholder: #454f66;
+
+    --link: #b7c0d6;
+    --link-hover: #eef1f6;
+
+    --accent: #6ba0e6;
+    --accent-rgb: 107, 160, 230;
+    --accent-ink: #3b6fc4;
+    --accent-ink-hover: #4a7dd1;
+
+    --danger: #f2685c;
+    --danger-bg: #2a1615;
+    --danger-bg-hover: #351a19;
+    --danger-border: #4a2422;
+
+    --success: #4ade9b;
+    --success-bg: #122a1f;
+    --success-border: #1f4a34;
+
+    --avatar-bg: #262d3d;
+    --avatar-text: #c3c9d6;
+
+    --shadow-rgb: 0, 0, 0;
+    --overlay-rgb: 5, 8, 15;
+
+    --status-assigned-bg: #2e2410;   --status-assigned-text: #f0b95c;
+    --status-progress-bg: #16233b;   --status-progress-text: #7fb0f2;
+    --status-resolved-bg: #241a3b;   --status-resolved-text: #c9aef2;
+    --status-closed-bg: #122a1f;     --status-closed-text: #4ade9b;
+
+    --status-dot-assigned: #f0b95c;
+    --status-dot-progress: #7fb0f2;
+    --status-dot-resolved: #c9aef2;
+    --status-dot-closed: #4ade9b;
+
+    --priority-warning-row: #5c4110;
+    --priority-warning-row-hover: #715012;
+    --priority-warning-badge-bg: #3a2e14;
+    --priority-warning-badge-text: #f7c873;
+
+    --priority-critical-row: #5c211d;
+    --priority-critical-row-hover: #712923;
+    --priority-critical-badge-bg: #351a19;
+    --priority-critical-badge-text: #f79c94;
+  }
+}
+
+/* Explicit overrides for the in-app toggle (script.js sets data-theme on
+   <html>) - these win over the OS-preference query in both directions, so a
+   manual choice always beats prefers-color-scheme. */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg-page: #0f1420;
+  --bg-surface: #161b28;
+  --bg-surface-hover: #1f2534;
+  --bg-subtle: #1c2230;
+  --bg-row-hover: #1a202e;
+
+  --border: #262d3d;
+  --border-strong: #323a4d;
+  --border-hover: #454f66;
+  --divider-subtle: #1f2534;
+
+  --text-primary: #eef1f6;
+  --text-secondary: #c3c9d6;
+  --text-tertiary: #a7afc2;
+  --text-muted: #8993a8;
+  --text-faint: #626b81;
+  --text-placeholder: #454f66;
+
+  --link: #b7c0d6;
+  --link-hover: #eef1f6;
+
+  --accent: #6ba0e6;
+  --accent-rgb: 107, 160, 230;
+  --accent-ink: #3b6fc4;
+  --accent-ink-hover: #4a7dd1;
+
+  --danger: #f2685c;
+  --danger-bg: #2a1615;
+  --danger-bg-hover: #351a19;
+  --danger-border: #4a2422;
+
+  --success: #4ade9b;
+  --success-bg: #122a1f;
+  --success-border: #1f4a34;
+
+  --avatar-bg: #262d3d;
+  --avatar-text: #c3c9d6;
+
+  --shadow-rgb: 0, 0, 0;
+  --overlay-rgb: 5, 8, 15;
+
+  --status-assigned-bg: #2e2410;   --status-assigned-text: #f0b95c;
+  --status-progress-bg: #16233b;   --status-progress-text: #7fb0f2;
+  --status-resolved-bg: #241a3b;   --status-resolved-text: #c9aef2;
+  --status-closed-bg: #122a1f;     --status-closed-text: #4ade9b;
+
+  --status-dot-assigned: #f0b95c;
+  --status-dot-progress: #7fb0f2;
+  --status-dot-resolved: #c9aef2;
+  --status-dot-closed: #4ade9b;
+
+  --priority-warning-row: #5c4110;
+  --priority-warning-row-hover: #715012;
+  --priority-warning-badge-bg: #3a2e14;
+  --priority-warning-badge-text: #f7c873;
+
+  --priority-critical-row: #5c211d;
+  --priority-critical-row-hover: #712923;
+  --priority-critical-badge-bg: #351a19;
+  --priority-critical-badge-text: #f79c94;
+}
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg-page: #f4f5f7; --bg-surface: #ffffff; --bg-surface-hover: #f3f4f6;
+  --bg-subtle: #eef0f3; --bg-row-hover: #f9fafb;
+  --border: #e2e5eb; --border-strong: #d8dce3; --border-hover: #c7cdd6; --divider-subtle: #f0f0f0;
+  --text-primary: #111827; --text-secondary: #374151; --text-tertiary: #475569;
+  --text-muted: #6b7280; --text-faint: #9ca3af; --text-placeholder: #c7ccd4;
+  --link: #334155; --link-hover: #1e293b;
+  --accent: #2354a6; --accent-rgb: 35, 84, 166;
+  --accent-ink: #1e293b; --accent-ink-hover: #0f172a;
+  --danger: #b42318; --danger-bg: #fef2f2; --danger-bg-hover: #fde8e8; --danger-border: #fecaca;
+  --success: #227a4c; --success-bg: #ecfdf3; --success-border: #a9d9b8;
+  --avatar-bg: #e2e5eb; --avatar-text: #475569;
+  --shadow-rgb: 20, 30, 55; --overlay-rgb: 17, 24, 39;
+  --status-assigned-bg: #fde9d0; --status-assigned-text: #9a5b16;
+  --status-progress-bg: #dbe8fd; --status-progress-text: #2354a6;
+  --status-resolved-bg: #e5ddfb; --status-resolved-text: #5b3ca6;
+  --status-closed-bg: #d9f0e1;   --status-closed-text: #227a4c;
+  --status-dot-assigned: #f5b8b0; --status-dot-progress: #f8cd9c;
+  --status-dot-resolved: #c9b8f0; --status-dot-closed: #a9d9b8;
+  --priority-warning-row: #ffe6a3; --priority-warning-row-hover: #ffd97d;
+  --priority-warning-badge-bg: #fff3d6; --priority-warning-badge-text: #7a4a05;
+  --priority-critical-row: #f7c3c3; --priority-critical-row-hover: #f3aaaa;
+  --priority-critical-badge-bg: #fde0e0; --priority-critical-badge-text: #8f1b12;
+}
+
+/* Self-hosted (no Google Fonts CDN call) - Inter ships as a single variable
+   file covering weights 400-700 in one download; IBM Plex Mono doesn't have
+   a variable build so each weight is its own static file. Latin subset only
+   - the UI's Thai strings already render via the system-ui/sans-serif
+   fallback today (the CDN version never served Thai glyphs for these
+   families either), so this is a hosting change, not a coverage change. */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('fonts/inter-var-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/plex-mono-400-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('fonts/plex-mono-600-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('fonts/plex-mono-700-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg-page);
+  font-family: 'Inter', system-ui, sans-serif;
+  color: var(--text-primary);
+}
+a { color: var(--link); }
+a:hover { color: var(--link-hover); }
+input::placeholder { color: var(--text-placeholder); }
+select { appearance: none; -webkit-appearance: none; }
+button { font-family: inherit; }
+
+.mono { font-family: 'IBM Plex Mono', monospace; }
+
+/* ---------- API error banner (shown on any view) ---------- */
+.api-error {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+  font-size: 12.5px;
+  color: var(--danger);
+  background: var(--danger-bg);
+  border: 1px solid var(--danger-border);
+  border-radius: 7px;
+  padding: 8px 12px;
+}
+.api-error button {
+  border: none;
+  background: transparent;
+  color: var(--danger);
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 1;
+  padding: 2px 4px;
+}
+
+/* ---------- Login ---------- */
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.login-card {
+  width: 380px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 32px 30px;
+  box-shadow: 0 14px 44px -18px rgba(var(--shadow-rgb), .18);
+}
+.login-title {
+  font-weight: 600;
+  font-size: 17px;
+  color: var(--text-primary);
+  letter-spacing: -.1px;
+}
+.login-error {
+  margin-top: 14px;
+  font-size: 12px;
+  color: var(--danger);
+  background: var(--danger-bg);
+  border: 1px solid var(--danger-border);
+  border-radius: 7px;
+  padding: 8px 11px;
+}
+.login-success {
+  margin-top: 14px;
+  font-size: 12px;
+  color: var(--success);
+  background: var(--success-bg);
+  border: 1px solid var(--success-border);
+  border-radius: 7px;
+  padding: 8px 11px;
+}
+.login-subtitle { margin-top: 6px; font-size: 12.5px; color: var(--text-muted); }
+.field-hint { margin-top: 5px; font-size: 11px; color: var(--text-faint); }
+.login-footer-link {
+  margin-top: 18px; text-align: center; font-size: 12px; color: var(--text-muted);
+}
+.login-footer-link span { color: var(--accent); cursor: pointer; font-weight: 500; }
+.login-footer-link span:hover { text-decoration: underline; }
+.field { margin-top: 16px; }
+.field-label { font-size: 12.5px; font-weight: 500; color: var(--text-secondary); }
+.text-input {
+  width: 100%;
+  margin-top: 7px;
+  border: 1px solid var(--border-strong);
+  border-radius: 7px;
+  padding: 9px 11px;
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--text-primary);
+  background: var(--bg-surface);
+  outline: none;
+}
+.password-field { position: relative; margin-top: 7px; }
+.password-field .text-input { margin-top: 0; padding-right: 34px; }
+.visibility-toggle {
+  position: absolute;
+  right: 0; top: 0; height: 100%; width: 34px;
+  border: none; background: transparent;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; color: var(--text-faint); padding: 0;
+}
+.login-actions { display: flex; gap: 10px; margin-top: 26px; }
+.login-actions .btn { flex: 1; }
+
+/* ---------- Buttons ---------- */
+.btn {
+  border: 1px solid var(--border-strong);
+  background: var(--bg-surface);
+  border-radius: 7px;
+  padding: 10px 0;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+.btn:hover { background: var(--bg-surface-hover); }
+.btn-primary {
+  border: none;
+  background: var(--accent-ink);
+  color: #fff;
+}
+.btn-primary:hover { background: var(--accent-ink-hover); }
+.btn-outline {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--border);
+  background: var(--bg-surface);
+  border-radius: 7px;
+  padding: 7px 12px;
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+.btn-outline:hover { background: var(--bg-surface-hover); }
+.btn-dark {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid var(--accent-ink);
+  background: var(--accent-ink);
+  color: #fff;
+  border-radius: 7px;
+  padding: 8px 14px;
+  font-size: 13px;
+  cursor: pointer;
+}
+.btn-dark:hover { background: var(--accent-ink-hover); }
+.icon-btn {
+  width: 24px; height: 24px;
+  border: none; background: transparent;
+  border-radius: 5px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-faint); padding: 0;
+}
+.icon-btn:hover { background: var(--bg-surface-hover); }
+.icon-btn-active { color: var(--danger); }
+.icon-btn-active:hover { background: var(--danger-bg); }
+.icon-btn-outline {
+  width: 26px; height: 26px;
+  border: 1px solid var(--border); background: var(--bg-surface);
+  border-radius: 6px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-tertiary); padding: 0; flex: none;
+}
+.icon-btn-outline:hover { background: var(--bg-surface-hover); }
+
+/* ---------- App shell ---------- */
+.app-shell { min-height: 100vh; display: flex; }
+
+.sidebar {
+  width: 216px; flex: none;
+  background: var(--bg-surface);
+  border-right: 1px solid var(--border);
+  display: flex; flex-direction: column;
+  padding: 20px 14px;
+}
+.sidebar-header {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 6px;
+  padding: 0 8px 20px;
+}
+.sidebar-header-actions { display: flex; align-items: center; gap: 4px; }
+.sidebar-title { font-weight: 600; font-size: 13px; color: var(--text-primary); }
+.sidebar-nav { padding: 4px 0; }
+.sidebar-nav-item {
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 10px; border-radius: 7px;
+  font-size: 13px; font-weight: 500; color: var(--text-secondary); cursor: pointer;
+}
+.sidebar-nav-item:hover { background: var(--bg-surface-hover); }
+.sidebar-nav-item.active { background: var(--bg-subtle); color: var(--text-primary); }
+.sidebar-nav-icon {
+  display: inline-flex; width: 16px; height: 16px; flex: none;
+  align-items: center; justify-content: center; color: var(--text-faint);
+}
+.sidebar-nav-item.active .sidebar-nav-icon { color: var(--accent); }
+.nav-badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 17px; height: 17px; padding: 0 4px; margin-left: auto;
+  background: var(--danger); color: #fff; border-radius: 20px;
+  font: 600 10px 'IBM Plex Mono', monospace;
+}
+.sidebar-footer { margin-top: auto; padding-top: 14px; }
+.sidebar-user { display: flex; align-items: center; gap: 10px; padding: 8px 10px; }
+.avatar {
+  width: 30px; height: 30px; border-radius: 50%;
+  background: var(--avatar-bg); color: var(--avatar-text);
+  display: flex; align-items: center; justify-content: center;
+  font: 600 12px 'IBM Plex Mono', monospace; flex: none;
+  box-shadow: 0 0 0 2px var(--border-strong);
+}
+.user-name {
+  font-size: 12.5px; font-weight: 600; color: var(--text-primary);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.user-role { margin-top: 4px; line-height: 1; }
+.team-chip {
+  display: inline-flex; align-items: center; gap: 3px;
+  padding: 1px 6px 1px 5px; border-radius: 4px;
+  background: var(--bg-subtle); color: var(--text-tertiary);
+  font: 600 8.5px 'IBM Plex Mono', monospace; letter-spacing: .3px;
+}
+.team-chip::before {
+  content: ''; width: 4px; height: 4px; border-radius: 50%;
+  background: currentColor; flex: none;
+}
+.team-chip-admin { background: var(--danger-bg); color: var(--danger); }
+.logout {
+  display: flex; align-items: center; gap: 9px;
+  padding: 8px 10px; border-radius: 7px;
+  font-size: 13px; color: var(--danger); margin-top: 2px; cursor: pointer;
+}
+.logout:hover { background: var(--danger-bg); }
+.logout-icon { width: 16px; height: 16px; flex: none; display: flex; align-items: center; justify-content: center; }
+
+.main { flex: 1; min-width: 0; padding: 36px 40px; }
+.main-inner { max-width: 1180px; margin: 0 auto; }
+
+.page-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.page-title { font-weight: 600; font-size: 18px; color: var(--text-primary); letter-spacing: -.1px; }
+.page-header .btn-outline { margin-left: auto; }
+.page-header-actions { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+.page-header-actions .btn-outline { margin-left: 0; }
+/* Same red as the danger badges elsewhere, not the neutral Refresh button -
+   an incoming handover is waiting on a decision, not routine navigation. */
+.handover-btn { border-color: var(--danger-border); color: var(--danger); }
+.handover-btn:hover { background: var(--danger-bg); }
+.handover-btn .nav-badge { margin-left: 0; }
+
+.breadcrumb { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-faint); }
+.breadcrumb-link { color: var(--text-faint); cursor: pointer; }
+.breadcrumb-current { color: var(--text-tertiary); font-weight: 500; }
+
+/* ---------- Dashboard toolbar ---------- */
+.toolbar { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+.upload-info { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text-tertiary); }
+.triage-banner {
+  margin-bottom: 22px; font-size: 12.5px; color: var(--text-muted); cursor: pointer;
+  display: inline-flex; align-items: center; gap: 7px;
+}
+.triage-banner-count { font-weight: 600; color: var(--text-primary); }
+.triage-banner-link { color: var(--accent); font-weight: 500; }
+
+/* ---------- Group cards ---------- */
+.groups-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; }
+.group-card {
+  min-width: 0; display: flex; flex-direction: column;
+  align-items: center; text-align: center;
+  background: var(--bg-surface); border: 1px solid var(--border); border-radius: 10px;
+  padding: 20px 12px 18px; cursor: pointer;
+  transition: box-shadow .15s, border-color .15s;
+}
+.group-card:hover { box-shadow: 0 6px 18px -8px rgba(var(--shadow-rgb), .18); border-color: var(--border-hover); }
+.group-tag {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--accent-ink); color: #fff;
+  font: 600 10px 'IBM Plex Mono', monospace;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 10px; letter-spacing: .2px;
+}
+/* wrapper ที่ใช้ position badge overdue บน group-tag circle */
+.group-tag-wrap { position: relative; display: inline-flex; margin-bottom: 10px; }
+.group-tag-wrap .group-tag { margin-bottom: 0; }
+.group-overdue-badge { position: absolute; top: -4px; right: -8px; }
+.group-owner { font-size: 11px; color: var(--text-faint); }
+.group-divider { width: 100%; height: 1px; background: var(--bg-subtle); margin: 14px 0 10px; }
+.group-divider-tight { width: 100%; height: 1px; background: var(--bg-subtle); margin: 0 0 12px; }
+.group-total { display: flex; align-items: baseline; gap: 6px; margin-bottom: 10px; }
+.group-total-num { font: 700 20px 'IBM Plex Mono', monospace; color: var(--text-primary); }
+.group-total-label { font-size: 10.5px; color: var(--text-faint); }
+.group-statuses { width: 100%; display: flex; flex-direction: column; gap: 6px; }
+.group-status-row { display: flex; align-items: center; justify-content: space-between; font-size: 11px; }
+.group-status-label { display: flex; align-items: center; gap: 6px; color: var(--text-muted); }
+.group-status-count { font: 600 11px 'IBM Plex Mono', monospace; color: var(--text-secondary); }
+
+.status-dot { width: 6px; height: 6px; border-radius: 50%; }
+.status-dot[data-status="Assigned"] { background: var(--status-dot-assigned); }
+.status-dot[data-status="In Progress"] { background: var(--status-dot-progress); }
+.status-dot[data-status="Resolved"] { background: var(--status-dot-resolved); }
+.status-dot[data-status="Closed"] { background: var(--status-dot-closed); }
+
+/* ---------- Tables ---------- */
+.table-card { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+.table-scroll { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+/* Only the triage/detail tables carry a <colgroup> (see renderColGroup() in
+   script.js) - those widths are just a starting hint now (table-layout:
+   auto), not a hard cap. A column grows past its hinted width to fit its
+   longest cell instead of ellipsis-truncating it — see td.ellipsis below —
+   so the whole table can end up wider than its container, in which case
+   .table-scroll's horizontal scrollbar is how you reach the rest of it. */
+thead tr { border-bottom: 1px solid var(--border); }
+th { text-align: left; padding: 11px 14px; font-weight: 600; color: var(--text-secondary); white-space: nowrap; }
+tbody tr { border-bottom: 1px solid var(--bg-subtle); }
+tbody tr:hover { background: var(--bg-row-hover); }
+/* TT ที่เพิ่งโผล่มาใหม่จาก poll ล่าสุด (~10 วิ) — กันตกหล่น (BRIEF ข้อ 4.5) */
+tbody tr.row-new-ticket { animation: row-new-ticket-fade 10s ease-out forwards; }
+@keyframes row-new-ticket-fade {
+  0% { background: var(--status-assigned-bg, rgba(245, 166, 35, .25)); }
+  100% { background: transparent; }
+}
+td { padding: 12px 14px; color: var(--text-secondary); white-space: nowrap; }
+td.wrap { white-space: normal; }
+/* ไม่ตัดข้อความด้วย ... อีกต่อไป (เอา overflow:hidden/text-overflow ออก) — ปล่อยให้
+   คอลัมน์ขยายกว้างขึ้นตามเนื้อหาจริงแทน แล้วเลื่อนดูส่วนที่เกินด้วย scrollbar แนวนอน */
+td.ellipsis { white-space: nowrap; }
+td.ticket-id { font: 600 12px 'IBM Plex Mono', monospace; color: var(--text-primary); }
+
+/* ---------- Column headers (fixed — no drag/resize) ---------- */
+th.col-header { position: relative; user-select: none; }
+.col-header-label { overflow: hidden; text-overflow: ellipsis; display: block; }
+
+.priority-chip { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 20px; border: 1.5px solid currentColor; }
+.badge { display: inline-block; font-size: 11px; font-weight: 500; padding: 3px 9px; border-radius: 20px; }
+.badge[data-status="Assigned"] { background: var(--status-assigned-bg); color: var(--status-assigned-text); }
+.badge[data-status="In Progress"] { background: var(--status-progress-bg); color: var(--status-progress-text); }
+.badge[data-status="Resolved"] { background: var(--status-resolved-bg); color: var(--status-resolved-text); }
+.badge[data-status="Closed"] { background: var(--status-closed-bg); color: var(--status-closed-text); }
+.badge:not([data-status]) { background: var(--bg-subtle); color: var(--text-tertiary); }
+
+.ack-done { font-size: 11.5px; color: var(--success); font-weight: 500; }
+.ack-btn {
+  border: 1px solid var(--border-strong); background: var(--bg-surface); border-radius: 6px;
+  padding: 5px 11px; font-size: 11.5px; color: var(--text-secondary); cursor: pointer;
+}
+.ack-btn:hover { background: var(--bg-surface-hover); }
+.ack-btn:disabled { opacity: .5; cursor: not-allowed; }
+.ack-btn:disabled:hover { background: var(--bg-surface); }
+
+.select-wrap { position: relative; }
+.raw-select {
+  appearance: none; font-family: inherit; font-size: 12.5px; color: var(--text-primary);
+  background: var(--bg-surface); border: 1px solid var(--border-strong); border-radius: 6px;
+  padding: 6px 26px 6px 10px; cursor: pointer;
+}
+.select-arrow {
+  position: absolute; right: 9px; top: 50%; transform: translateY(-50%);
+  pointer-events: none; color: var(--text-faint); font-size: 9px;
+}
+
+.empty-state { text-align: center; color: var(--text-faint); font-size: 13px; padding: 40px 0; }
+
+/* ---------- Triage proposal (any team suggests, admin confirms) ---------- */
+.proposal-cell { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; white-space: normal; }
+.proposal-tag {
+  display: inline-block; padding: 2px 8px; border-radius: 4px;
+  background: rgba(var(--accent-rgb), .12); color: var(--accent);
+  font: 600 11px 'IBM Plex Mono', monospace;
+}
+.proposal-by { font-size: 10.5px; color: var(--text-faint); }
+.proposal-status { font-size: 10.5px; color: var(--text-muted); font-style: italic; }
+.proposal-actions { display: flex; gap: 6px; margin-top: 2px; }
+.proposal-actions .btn-outline, .proposal-actions .ack-btn { padding: 4px 10px; font-size: 11px; }
+
+/* ---------- Detail view controls ---------- */
+.detail-toolbar { display: flex; align-items: flex-end; gap: 22px; flex-wrap: wrap; margin: 26px 0 18px; }
+.search-box {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--bg-surface); border: 1px solid var(--border-strong); border-radius: 7px;
+  padding: 8px 11px; min-width: 240px; height: 34px;
+  color: var(--text-faint);
+}
+.search-box input {
+  border: none; outline: none; font-family: inherit; font-size: 13px;
+  color: var(--text-primary); background: transparent; width: 100%;
+}
+.search-label { font-size: 11.5px; color: var(--text-muted); margin-bottom: 6px; }
+
+/* ---------- Bulk selection bar (multi-select assign) ---------- */
+.bulk-bar {
+  display: flex; align-items: center; gap: 12px;
+  background: rgba(var(--accent-rgb), .08);
+  border: 1px solid rgba(var(--accent-rgb), .25);
+  border-radius: 8px; padding: 10px 14px; margin-bottom: 14px;
+  font-size: 12.5px; color: var(--text-secondary);
+}
+.bulk-bar-clear { margin-left: auto; color: var(--text-muted); cursor: pointer; }
+.bulk-bar-clear:hover { color: var(--text-primary); text-decoration: underline; }
+
+/* ---------- Loading bar (runBusy()) ---------- */
+.busy-bar {
+  position: fixed; top: 0; left: 0; right: 0; height: 3px;
+  z-index: 100; background: rgba(var(--accent-rgb), .12); overflow: hidden;
+}
+.busy-bar-fill {
+  position: absolute; top: 0; bottom: 0; left: -30%; width: 30%;
+  background: var(--accent); border-radius: 2px;
+  animation: busy-bar-slide 1.1s ease-in-out infinite;
+}
+@keyframes busy-bar-slide {
+  0% { left: -30%; }
+  55% { left: 100%; }
+  100% { left: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .busy-bar-fill { animation: none; left: 0; width: 100%; opacity: .5; }
+}
+
+/* ---------- Confirm dialog ---------- */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 90;
+  background: rgba(var(--overlay-rgb), .5);
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px;
+}
+.modal-card {
+  width: 100%; max-width: 360px;
+  background: var(--bg-surface); border: 1px solid var(--border); border-radius: 12px;
+  padding: 22px 22px 18px;
+  box-shadow: 0 20px 50px -18px rgba(var(--shadow-rgb), .45);
+}
+.modal-body { font-size: 13.5px; color: var(--text-primary); line-height: 1.5; }
+.modal-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px; }
+.modal-actions .btn, .modal-actions .btn-primary { padding: 8px 16px; }
+
+/* ---------- Pagination ---------- */
+.pagination {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; margin-top: 14px; flex-wrap: wrap;
+}
+.pagination-info { font-size: 12px; color: var(--text-muted); }
+.pagination-controls { display: flex; gap: 8px; }
+.pagination-controls .btn-outline:disabled { opacity: .45; cursor: not-allowed; }
+.pagination-controls .btn-outline:disabled:hover { background: var(--bg-surface); }
+
+/* ---------- Priority highlighting (SLA-based row colour) ---------- */
+tr[data-priority="warning"] { background: var(--priority-warning-row); }
+tr[data-priority="warning"]:hover { background: var(--priority-warning-row-hover); }
+tr[data-priority="warning"] td { color: var(--text-primary); }
+tr[data-priority="critical"] { background: var(--priority-critical-row); }
+tr[data-priority="critical"]:hover { background: var(--priority-critical-row-hover); }
+tr[data-priority="critical"] td { color: var(--text-primary); }
+
+/* Key above a ticket table so the row colours are readable at a glance */
+.priority-legend { display: flex; align-items: center; gap: 16px; font-size: 11.5px; color: var(--text-muted); }
+.priority-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+.priority-legend-dot { width: 10px; height: 10px; border-radius: 3px; }
+.priority-legend-dot[data-priority="warning"] { background: var(--priority-warning-row); border: 1px solid var(--priority-warning-badge-text); }
+.priority-legend-dot[data-priority="critical"] { background: var(--priority-critical-row); border: 1px solid var(--priority-critical-badge-text); }
+
+/* ---------- Customer-update SLA badge (1-hour recurring reminder) ----------
+   Reuses the existing priority-warning/critical tokens (same yellow/red as
+   the SLA row highlighting above) so it reads as the same severity language
+   app-wide, rather than introducing a third unrelated color scheme. */
+.sla-badge {
+  display: inline-block; font-size: 11.5px; font-weight: 600;
+  padding: 3px 9px; border-radius: 999px; white-space: nowrap;
+}
+.sla-badge-safe { background: var(--success-bg); color: var(--success); }
+.sla-badge-warning { background: var(--priority-warning-badge-bg); color: var(--priority-warning-badge-text); }
+.sla-badge-overdue { background: var(--priority-critical-badge-bg); color: var(--priority-critical-badge-text); animation: sla-pulse 1.6s ease-in-out infinite; }
+@keyframes sla-pulse { 0%, 100% { opacity: 1; } 50% { opacity: .55; } }
+@media (prefers-reduced-motion: reduce) {
+  .sla-badge-overdue { animation: none; }
+}
+
+/* ---------- Sidebar collapse/expand animation (View Transitions) ----------
+   toggleSidebar() in script.js wraps the state change in startViewTransition;
+   naming the two regions lets the browser tween the sidebar sliding out and
+   the content reflowing to fill the space. Guarded by reduced-motion both
+   here and in JS. Browsers without the API just get the instant swap. */
+@media (prefers-reduced-motion: no-preference) {
+  .sidebar { view-transition-name: csmc-sidebar; }
+  .main { view-transition-name: csmc-main; }
+
+  ::view-transition-group(csmc-sidebar),
+  ::view-transition-group(csmc-main) {
+    animation-duration: .26s;
+    animation-timing-function: cubic-bezier(.4, 0, .2, 1);
+  }
+  ::view-transition-old(csmc-sidebar) { animation: csmc-sidebar-out .26s cubic-bezier(.4, 0, .2, 1) both; }
+  ::view-transition-new(csmc-sidebar) { animation: csmc-sidebar-in .26s cubic-bezier(.4, 0, .2, 1) both; }
+}
+@keyframes csmc-sidebar-out { to { transform: translateX(-100%); opacity: 0; } }
+@keyframes csmc-sidebar-in { from { transform: translateX(-100%); opacity: 0; } }
+
+/* ---------- Overdue banner (detail view — แจ้งเตือน + ปุ่ม dismiss) ---------- */
+.overdue-banner {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  font-size: 12.5px; color: var(--text-muted);
+  background: var(--danger-bg); border: 1px solid var(--danger-border);
+  border-radius: 7px; padding: 8px 12px; margin-bottom: 14px;
+}
+.overdue-banner-count { font-weight: 700; color: var(--danger); font-size: 13px; }
+.banner-dismiss {
+  margin-left: auto; border: none; background: transparent;
+  color: var(--text-faint); cursor: pointer; font-size: 13px;
+  line-height: 1; padding: 2px 4px; font-family: inherit;
+}
+.banner-dismiss:hover { color: var(--text-primary); }
+.overdue-filter-bar {
+  font-size: 12px; color: var(--text-muted); margin-bottom: 10px;
+  display: flex; align-items: center; gap: 8px;
+}
+
+/* In Progress dashboard, timeline, handover form, tracking page - reuses
+   existing design tokens only, so both themes already apply with zero
+   extra work. */
+.inprogress-row { cursor: pointer; }
+.inprogress-row:hover { background: var(--bg-surface-hover); }
+/* A colleague proposed handing this specific ticket to the logged-in user -
+   highlighted so it doesn't get missed among an otherwise plain list. */
+.inprogress-row-incoming { background: rgba(var(--accent-rgb), .06); }
+.inprogress-row-incoming:hover { background: rgba(var(--accent-rgb), .1); }
+/* Boxed like .overdue-banner (not the plain-text .triage-banner) -
+   deliberately louder, since missing an incoming handover means a ticket
+   silently sits un-owned until someone happens to notice it. */
+.handover-banner {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  font-size: 12.5px; color: var(--text-muted);
+  background: var(--danger-bg); border: 1px solid var(--danger-border);
+  border-radius: 7px; padding: 8px 12px; margin-bottom: 16px;
+}
+.handover-banner-count { font-weight: 700; color: var(--danger); font-size: 13px; }
+.handover-pending { font-size: 11.5px; color: var(--text-muted); }
+.handover-form { display: inline-flex; gap: 6px; align-items: center; }
+.handover-incoming { display: inline-flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.handover-incoming-label { font-size: 11.5px; font-weight: 600; color: var(--accent); display: inline-flex; align-items: center; gap: 4px; }
+
+.sub-status-timeline { display: flex; gap: 6px; flex-wrap: wrap; }
+.timeline-step {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 11px; padding: 3px 9px; border-radius: 999px;
+  border: 1px solid var(--border-strong); background: var(--bg-surface-hover); color: var(--text-muted);
+}
+button.timeline-step { cursor: pointer; font-family: inherit; }
+.timeline-step.done { border-color: var(--success); color: var(--success); }
+
+.detail-owner-label { font-size: 12.5px; color: var(--text-muted); }
+
+.stepper { margin-bottom: 20px; }
+.stepper-track { position: relative; display: flex; justify-content: space-between; align-items: flex-start; }
+/* border-strong, not bg-surface-hover: that token sits almost exactly on
+   top of the page background (#f3f4f6 vs #f4f5f7) so the "not reached yet"
+   portion of the line was rendering but effectively invisible - it looked
+   like the line just stopped instead of continuing in a muted color.
+   No left/width here - layoutSteppers() (script.js) sets both in pixels
+   after every render, measured from the actual circle positions, since
+   circles aren't evenly spaced (space-between with content-sized labels). */
+.stepper-line-base { position: absolute; top: 18px; height: 3px; background: var(--border-strong); border-radius: 999px; z-index: 0; }
+.stepper-line-fill { position: absolute; top: 18px; height: 3px; background: var(--accent); border-radius: 999px; z-index: 0; }
+.stepper-step {
+  position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 6px;
+  background: none; border: none; font-family: inherit; cursor: pointer; padding: 0;
+}
+.stepper-circle {
+  width: 36px; height: 36px; border-radius: 999px; display: flex; align-items: center; justify-content: center;
+  background: rgba(var(--accent-rgb), .12); color: var(--accent); border: 2px solid var(--bg-surface);
+}
+/* Solid fill always means "real progress reached this step", independent of
+   which step is currently selected for viewing - clicking around must never
+   look like progress moved. "viewing" only adds a ring on top of whatever
+   fill (done or not) the circle already has. */
+.stepper-circle.done { background: var(--accent); color: #fff; }
+.stepper-circle.viewing { box-shadow: 0 0 0 3px var(--bg-page), 0 0 0 5px var(--accent); }
+.stepper-label { font-size: 11px; color: var(--text-muted); text-align: center; white-space: nowrap; }
+.stepper-label.viewing { color: var(--accent); font-weight: 600; }
+.detail-cards { display: grid; grid-template-columns: minmax(260px, 400px) 1fr; gap: 20px; align-items: start; }
+@media (max-width: 800px) { .detail-cards { grid-template-columns: 1fr; } }
+
+.status-card, .description-card {
+  border: 1px solid var(--border); border-radius: 10px; background: var(--bg-surface); padding: 20px;
+}
+.status-card-header { display: flex; align-items: flex-start; gap: 12px; }
+.status-card-icon {
+  width: 44px; height: 44px; border-radius: 999px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--bg-surface-hover); color: var(--accent);
+}
+.status-card-title { font-size: 16px; font-weight: 700; color: var(--accent); }
+.status-card-desc { font-size: 12.5px; color: var(--text-secondary); margin-top: 2px; }
+.status-card-divider { height: 1px; background: var(--border); margin: 16px 0; }
+.status-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; font-size: 13px; }
+.status-row-label { color: var(--text-secondary); }
+.status-row-value { color: var(--text-primary); font-weight: 600; }
+.status-row-value.pending { color: var(--text-muted); font-weight: 400; font-style: italic; }
+.tel-link { color: var(--accent); font-weight: 600; text-decoration: none; }
+.tel-link:hover { text-decoration: underline; }
+
+.description-card-header { display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 600; color: var(--text-primary); margin-bottom: 12px; }
+.attach-buttons { display: flex; gap: 12px; margin-top: 10px; }
+.attach-btn {
+  display: flex; align-items: center; gap: 6px; border: 1px solid var(--border-strong); background: none;
+  color: var(--text-secondary); font-size: 12.5px; font-family: inherit; padding: 6px 12px; border-radius: 999px; cursor: pointer;
+}
+.attach-btn:hover { background: var(--bg-surface-hover); }
+/* Client-only preview - just remembers the picked file's name (and, for an
+   image, an object-URL thumbnail), nothing is uploaded or stored
+   server-side yet. */
+.attach-picked { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-muted); margin-top: 8px; }
+.detail-note-box {
+  margin-top: 7px; min-height: 60px; padding: 9px 11px;
+  border: 1px solid var(--border); border-radius: 7px;
+  background: var(--bg-surface-hover); font-size: 13px; color: var(--text-primary);
+  white-space: pre-wrap;
+}
+.detail-panel-actions { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+.detail-panel-actions-left, .detail-panel-actions-right { display: flex; gap: 8px; flex-wrap: wrap; }
+textarea.detail-note-box { width: 100%; resize: vertical; font-family: inherit; border: 1px solid var(--border-strong); }
+/* Lives inside the description content itself (read-only: nested right in
+   .detail-note-box; editing: directly above the textarea) rather than as a
+   separate preview elsewhere on the card. */
+.note-box-image { display: block; max-width: 100%; max-height: 160px; border-radius: 6px; margin-bottom: 8px; }
+
+.timeline-summary-card {
+  border: 1px solid var(--border); border-radius: 10px; background: var(--bg-surface); padding: 20px; margin-top: 20px;
+}
+.timeline-summary-header { display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 600; color: var(--text-primary); margin-bottom: 18px; }
+.timeline-total-badge { margin-left: auto; font-size: 12px; font-weight: 600; color: var(--accent); background: var(--bg-surface-hover); padding: 4px 10px; border-radius: 999px; }
+.timeline-team-badge { font-size: 12px; font-weight: 600; color: var(--text-secondary); background: var(--bg-surface-hover); padding: 4px 10px; border-radius: 999px; }
+.timeline-items { position: relative; }
+.timeline-items::before { content: ''; position: absolute; left: 19px; top: 8px; bottom: 8px; width: 2px; background: var(--border); }
+.timeline-item { position: relative; display: flex; gap: 16px; padding-bottom: 24px; }
+.timeline-item.last { padding-bottom: 0; }
+.timeline-item-icon {
+  position: relative; z-index: 1; width: 40px; height: 40px; border-radius: 999px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--bg-surface-hover); color: var(--text-muted);
+}
+.timeline-item-icon.done { background: var(--accent); color: #fff; }
+.timeline-item-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.timeline-item-label { font-weight: 700; color: var(--text-primary); font-size: 13.5px; }
+.timeline-item-time { font-size: 11px; padding: 2px 9px; border-radius: 999px; background: var(--bg-surface-hover); color: var(--text-secondary); }
+.timeline-item-time.pending { color: var(--text-muted); font-style: italic; }
+.timeline-item-responsible { font-size: 12.5px; color: var(--text-secondary); margin: 2px 0 0; }
+.timeline-item-technician { font-size: 12.5px; color: var(--text-secondary); margin: 2px 0 0; }
+.timeline-item-duration { font-size: 12px; color: var(--accent); font-weight: 600; margin: 2px 0 0; }
+
+/* ============================================================
+   Phase 3 — Analyze (docs/BRIEF_Phase3_Analyze.md ข้อ 5)
+   ============================================================ */
+
+.diagnose-badge { display: inline-block; font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 20px; white-space: nowrap; }
+.diagnose-badge-pending { background: var(--bg-subtle); color: var(--text-tertiary); }
+.diagnose-badge-running { background: rgba(var(--accent-rgb), 0.14); color: var(--accent); }
+.diagnose-badge-done { background: var(--success-bg); color: var(--success); }
+.diagnose-badge-unreachable { background: #fdf0e1; color: #b5650a; }
+@media (prefers-color-scheme: dark) { .diagnose-badge-unreachable { background: #3a2a12; color: #e0a355; } }
+:root[data-theme="dark"] .diagnose-badge-unreachable { background: #3a2a12; color: #e0a355; }
+:root[data-theme="light"] .diagnose-badge-unreachable { background: #fdf0e1; color: #b5650a; }
+.diagnose-badge-undetermined { background: var(--bg-subtle); color: var(--text-muted); }
+
+/* .detail-cards ตัวเดียวกับหน้า ticket detail อื่น (status-card/description-card) ใช้ class
+   เสริมนี้เจาะจงระยะห่างการ์ดของหน้า Analyze แทนที่จะแก้ gap ของ .detail-cards ตรงๆ ซึ่งจะ
+   กระทบหน้าอื่นไปด้วย (ข้อ 6: ระหว่างการ์ด 16px) */
+.analyze-cards-grid { gap: 16px; }
+
+.analyze-card {
+  border: 1px solid var(--border); border-radius: 8px; background: var(--bg-surface); overflow: hidden;
+}
+.analyze-card + .analyze-card { margin-top: 0; }
+.analyze-card-head {
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  padding: 16px 20px; border-bottom: 1px solid var(--divider-subtle);
+}
+.analyze-card-title { font-size: 14px; font-weight: 600; color: var(--text-primary); }
+.analyze-last-checked { font-size: 12px; color: var(--text-muted); margin-left: auto; }
+.analyze-card-body { padding: 16px; }
+/* label/value ในการ์ด Analyze โดยเฉพาะ — scope ด้วย .analyze-card-body กัน .field-label
+   ตัวเดียวกันที่ใช้ร่วมกับหน้า login/register/manual-entry อื่นๆ ไม่ให้โดนกระทบไปด้วย */
+.analyze-card-body .field {  margin-top: 14px; }
+.analyze-card-body .field-label {
+  display: block; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.06em;
+  font-weight: 500; color: var(--text-muted); margin-bottom: 3px;
+}
+.analyze-card-body .field-value { font-size: 13px; font-weight: 400; color: var(--text-primary); line-height: 1.5; }
+/* label เฉพาะจุดที่ "Reference" ไม่ต้อง uppercase/letter-spacing เหมือน label ทั่วไป (ข้อ 5) */
+.analyze-label-plain {
+  display: block; font-size: 11px; font-weight: 500; color: var(--text-faint); margin-bottom: 3px;
+}
+
+.analyze-quick-title { font-size: 15px; font-weight: 600; color: var(--text-primary); margin-bottom: 8px; }
+.analyze-priority-row { display: flex; align-items: center; gap: 10px; }
+.analyze-signal-line { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--text-muted); margin-top: 4px; }
+.analyze-signal-dot { width: 8px; height: 8px; border-radius: 999px; flex-shrink: 0; }
+.analyze-signal-dot.ok { background: var(--success); }
+.analyze-signal-dot.down { background: var(--danger); }
+.analyze-confidence-word { font-size: 12.5px; color: var(--text-muted); }
+.analyze-readonly-text { font-size: 13px; color: var(--text-primary); white-space: pre-wrap; }
+.analyze-low-confidence { font-size: 12px; color: #b5650a; margin: 6px 0 0; }
+@media (prefers-color-scheme: dark) { .analyze-low-confidence { color: #e0a355; } }
+:root[data-theme="dark"] .analyze-low-confidence { color: #e0a355; }
+:root[data-theme="light"] .analyze-low-confidence { color: #b5650a; }
+
+/* REPORTED BY / AFFECTED SITE คู่กัน — คอลัมน์ซ้ายกว้าง 50% ตรงๆ ตามข้อกำหนดระยะห่าง */
+.analyze-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 14px; }
+.analyze-2col .field { margin-top: 0; }
+
+.analyze-reasoning-group { margin-top: 3px; display: flex; flex-direction: column; gap: 8px; }
+.analyze-reasoning-row { display: flex; align-items: baseline; gap: 10px; }
+.analyze-reasoning-label {
+  flex: 0 0 80px; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.06em;
+  font-weight: 500; color: var(--text-muted);
+}
+.analyze-reasoning-value { font-size: 13px; color: var(--text-primary); line-height: 1.5; }
+/* ข้อยกเว้นเดียวที่ยังเป็นสี accent — ชื่อกฎใน RULE (ข้อ 4) */
+.analyze-reasoning-rule { font-family: ui-monospace, "SF Mono", Consolas, monospace; font-size: 12.5px; color: var(--accent); }
+
+/* แถบหัวกล่อง RAW LOGS — label + Copy ชิดขวา อยู่นอกกล่องเนื้อหา (คนละแบบกับ Reference
+   ข้อ 2 ที่รวมเป็นกล่องเดียว) */
+.analyze-box-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 3px; }
+.analyze-box-source {
+  font-family: ui-monospace, "SF Mono", Consolas, monospace; text-transform: none; letter-spacing: normal; font-weight: 400;
+}
+.analyze-copy-btn { padding: 4px 10px; font-size: 11.5px; flex-shrink: 0; }
+/* ปุ่ม Copy ข้อความเปล่า ไม่มีขอบ — เฉพาะแถว RAW LOGS ในการ์ด Quick (ข้อ 6) ปุ่ม Copy อื่นๆ
+   ในการ์ด Deep analysis ยังเป็น .btn-outline มีขอบตามเดิม */
+.analyze-copy-plain {
+  background: none; border: none; padding: 0; font-family: inherit; font-size: 12px;
+  color: var(--text-muted); cursor: pointer; flex-shrink: 0;
+}
+.analyze-copy-plain:hover { color: var(--text-primary); }
+
+/* แผงเน้น CAUSE — พื้น subtle เดียวกับ row-hover ของตาราง (ใกล้เคียง #f9fafb ใน mockup แล้ว
+   ไม่ต้องเพิ่มตัวแปรสีใหม่) */
+.analyze-cause-panel { background: var(--bg-row-hover); border-radius: 6px; padding: 16px; margin-bottom: 14px; }
+.analyze-cause-title { font-size: 15px; font-weight: 600; color: var(--text-primary); }
+.analyze-cause-detail { font-size: 13px; color: var(--text-muted); margin-top: 4px; line-height: 1.5; }
+.analyze-cause-detail code {
+  font-family: ui-monospace, "SF Mono", Consolas, monospace; font-size: 12px;
+  background: var(--bg-subtle); border-radius: 4px; padding: 1px 5px;
+}
+
+/* Phase 3.5 — ป้ายบอกแหล่งที่มาของสาเหตุ (กฎ / แบบจำลองภาษา)
+   ใช้สีต่างกันชัดเจนโดยตั้งใจ: ผลจากกฎตรวจสอบย้อนกลับได้ 100% ส่วนผลจากโมเดลไม่การันตี
+   ผลเท่ากันทุกครั้ง — เจ้าหน้าที่ต้องแยกออกด้วยตาเปล่าก่อนตัดสินใจ */
+.cause-source {
+  display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px;
+  font-size: 11px; font-weight: 600; letter-spacing: .3px; vertical-align: middle;
+  text-transform: uppercase; cursor: help;
+}
+.cause-source-rule { background: #dcfce7; color: #166534; }
+.cause-source-llm { background: #e0e7ff; color: #3730a3; }
+:root[data-theme="dark"] .cause-source-rule { background: #14321f; color: #6ee7a8; }
+:root[data-theme="dark"] .cause-source-llm { background: #1e1b4b; color: #a5b4fc; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .cause-source-rule { background: #14321f; color: #6ee7a8; }
+  :root:not([data-theme="light"]) .cause-source-llm { background: #1e1b4b; color: #a5b4fc; }
+}
+
+/* ข้อความเรียบเรียงจากแบบจำลองภาษา — แสดงเป็น "ตัวรอง" ต่อจาก cause_summary เสมอ
+   เพราะชั้นเรียบเรียงไม่มีด่านตรวจ เคยเติมข้อเท็จจริงเท็จมาแล้ว (Plan.md 3.5.7 บั๊ก #7) */
+.analyze-cause-llm {
+  font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-top: 10px;
+  padding-top: 10px; border-top: 1px dashed var(--border-color, #d8dee4);
+}
+.analyze-cause-llm-label {
+  display: block; font-size: 10.5px; font-weight: 600; letter-spacing: .5px;
+  text-transform: uppercase; opacity: .65; margin-bottom: 3px;
+}
+
+/* แจ้งว่าคำตอบของโมเดลถูกปฏิเสธ — จงใจแสดงให้เห็น ไม่ซ่อน เพราะเป็นหลักฐานว่ากลไก
+   กันตอบมั่วทำงานจริง (ใช้ประกอบการตรวจของเจ้าหน้าที่และการเขียนเล่ม) */
+.diagnose-banner-rejected { background: #f3e8ff; color: #6b21a8; }
+:root[data-theme="dark"] .diagnose-banner-rejected { background: #2e1065; color: #d8b4fe; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .diagnose-banner-rejected { background: #2e1065; color: #d8b4fe; }
+}
+
+.analyze-raw-box {
+  font-family: ui-monospace, "SF Mono", Consolas, monospace; font-size: 12px; line-height: 1.65;
+  background: var(--bg-subtle); border: 1px solid var(--border); border-radius: 8px;
+  padding: 10px 12px; white-space: pre-wrap; word-break: break-word; overflow-x: auto;
+  color: var(--text-primary); margin: 0;
+}
+.analyze-manual-output { max-height: 320px; overflow-y: auto; }
+
+/* กล่อง REFERENCE (ข้อ 2) — กล่องเดียวมีขอบ: แถบหัวพื้น bg-row-hover + เนื้อในพื้นขาว/surface
+   คนละแบบกับ RAW LOGS ที่ label อยู่นอกกล่อง เพราะ mockup ให้ REFERENCE รวมชื่ออุปกรณ์ไว้ใน
+   กล่องเดียวกับเนื้อหา ไม่ใช่ลอยอยู่ข้างบนเป็น chip แยก */
+.analyze-ref-box { border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+.analyze-ref-head {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  background: var(--bg-row-hover); padding: 8px 12px; border-bottom: 1px solid var(--border);
+}
+.analyze-mono-source { font-family: ui-monospace, "SF Mono", Consolas, monospace; font-size: 11.5px; color: var(--text-muted); }
+.analyze-ref-body {
+  font-family: ui-monospace, "SF Mono", Consolas, monospace; font-size: 12px; line-height: 1.65;
+  background: var(--bg-surface); padding: 12px; margin: 0; white-space: pre-wrap; word-break: break-word;
+  overflow-x: auto; color: var(--text-primary);
+}
+
+/* COMMAND OUTPUT — แต่ละแถวเป็นกล่องมีขอบของตัวเอง (ข้อ 3) ไม่ใช่แค่เส้นคั่น ขยายแล้วเนื้อหา
+   อยู่ในกล่องเดียวกันต่อจากหัวแถว */
+.analyze-command-section { border: 1px solid var(--border); border-radius: 6px; padding: 10px 12px; }
+.analyze-command-section + .analyze-command-section { margin-top: 8px; }
+.analyze-command-section summary {
+  display: flex; align-items: center; gap: 8px; list-style: none; cursor: pointer;
+  padding: 0; user-select: none;
+}
+.analyze-command-section[open] summary { margin-bottom: 10px; }
+.analyze-command-section summary::-webkit-details-marker { display: none; }
+.analyze-command-section summary::before {
+  content: '▸'; color: var(--text-muted); font-size: 11px; flex-shrink: 0; transition: transform .15s;
+}
+.analyze-command-section[open] summary::before { transform: rotate(90deg); }
+.analyze-command-section summary:hover .analyze-command-name { color: var(--accent); }
+.analyze-command-name { font-family: ui-monospace, "SF Mono", Consolas, monospace; font-size: 13px; color: var(--text-primary); }
+.analyze-command-filtered { font-size: 13px; font-weight: 400; color: var(--text-muted); }
+.analyze-command-section .analyze-copy-btn { margin-left: auto; }
+.analyze-command-body {
+  font-family: ui-monospace, "SF Mono", Consolas, monospace; font-size: 12px; line-height: 1.65;
+  background: var(--bg-row-hover); border-radius: 4px; padding: 10px 12px; margin: 0;
+  white-space: pre-wrap; word-break: break-word; overflow-x: auto; color: var(--text-primary);
+}
+
+.diagnose-banner { font-size: 12.5px; padding: 10px 12px; border-radius: 8px; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+.diagnose-banner-pending { background: var(--bg-subtle); color: var(--text-muted); }
+.diagnose-banner-running { background: rgba(var(--accent-rgb), 0.1); color: var(--accent); }
+.diagnose-banner-unreachable { background: #fdf0e1; color: #b5650a; }
+@media (prefers-color-scheme: dark) { .diagnose-banner-unreachable { background: #3a2a12; color: #e0a355; } }
+:root[data-theme="dark"] .diagnose-banner-unreachable { background: #3a2a12; color: #e0a355; }
+:root[data-theme="light"] .diagnose-banner-unreachable { background: #fdf0e1; color: #b5650a; }
+.diagnose-banner-undetermined { background: var(--bg-subtle); color: var(--text-muted); }
+.diagnose-skeleton {
+  width: 14px; height: 14px; border-radius: 999px; border: 2px solid currentColor; border-top-color: transparent;
+  animation: diagnose-spin 0.8s linear infinite; flex-shrink: 0;
+}
+@keyframes diagnose-spin { to { transform: rotate(360deg); } }
+
+.analyze-manual-controls { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }
+.analyze-manual-actions { display: flex; gap: 8px; margin-top: 10px; }
+
+.analyze-review-bar {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  border: 1px solid var(--border); border-radius: 10px; background: var(--bg-surface); padding: 16px 20px; margin-top: 20px;
+}
+.analyze-review-left { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.analyze-review-right { display: flex; align-items: center; gap: 8px; }
+.chip-suggested {
+  font-size: 11px; font-weight: 600; color: var(--text-tertiary); background: var(--bg-subtle);
+  padding: 3px 9px; border-radius: 20px; white-space: nowrap;
+}
+
+/* ============================================================
+   Phase 6 — การ์ด "ประเภทงาน" (disposition) + ช่องเลือกในแถบล่าง
+   ใช้ตัวแปรสีชุดเดิมทั้งหมด ไม่ตั้งค่าสีดิบใหม่ เพื่อให้โหมดมืด/สว่างตามของเดิมอัตโนมัติ
+   ============================================================ */
+
+/* chip บอกว่าค่านี้ "คนยืนยันแล้ว" — ต่างจาก chip-suggested ที่แปลว่า "ระบบเสนอ"
+   ต้องแยกกันให้เห็นชัด เพราะเป็นหลักฐานว่าใครเป็นคนตัดสิน ไม่ใช่ระบบตัดสินเอง */
+.chip-confirmed {
+  font-size: 11px; font-weight: 600; color: var(--text-primary); background: var(--bg-row-hover);
+  border: 1px solid var(--border); padding: 3px 9px; border-radius: 20px; white-space: nowrap;
+}
+
+/* เส้นคั่นระหว่าง RESPONSIBLE TEAM กับ ประเภทงาน ในแถบล่าง — สองแกนคนละเรื่องกัน
+   ต้องมองออกว่าเป็นคนละช่อง ไม่ใช่ช่องเดียวที่มีสองส่วน */
+.analyze-review-sep {
+  margin-left: 10px; padding-left: 16px; border-left: 1px solid var(--divider-subtle);
+}
+
+.analyze-disposition-empty { font-size: 13px; color: var(--text-muted); margin: 0; line-height: 1.6; }
+
+.analyze-disposition-head {
+  display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;
+  padding-bottom: 10px; border-bottom: 1px solid var(--divider-subtle);
+}
+.analyze-disposition-name { font-size: 15px; font-weight: 600; color: var(--text-primary); }
+.analyze-disposition-route { font-size: 12.5px; color: var(--text-muted); }
+.analyze-disposition-head.is-low .analyze-disposition-name { color: #b5650a; }
+@media (prefers-color-scheme: dark) { .analyze-disposition-head.is-low .analyze-disposition-name { color: #e0a355; } }
+:root[data-theme="dark"] .analyze-disposition-head.is-low .analyze-disposition-name { color: #e0a355; }
+:root[data-theme="light"] .analyze-disposition-head.is-low .analyze-disposition-name { color: #b5650a; }
+
+.analyze-disposition-block { margin-top: 14px; }
+.analyze-disposition-list {
+  margin: 4px 0 0; padding-left: 18px; font-size: 13px; line-height: 1.65; color: var(--text-primary);
+}
+.analyze-disposition-list li { margin-bottom: 3px; }
+/* รายการที่ตัดออกเป็นข้อมูลประกอบ ไม่ใช่ข้อสรุป — ทำให้จางกว่าเหตุผลหลักอย่างตั้งใจ */
+.analyze-disposition-ruled { color: var(--text-muted); }
+
+.analyze-impact { padding-top: 14px; border-top: 1px solid var(--divider-subtle); }
+.analyze-impact-basis {
+  font-size: 12.5px; color: var(--text-muted); line-height: 1.6; margin: 4px 0 10px;
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+}
+.analyze-impact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 16px; }
+.analyze-impact-item { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.analyze-impact-label { font-size: 12.5px; color: var(--text-primary); }
+.analyze-impact-input {
+  width: 74px; padding: 4px 8px; font-size: 13px; text-align: right;
+  border: 1px solid var(--border); border-radius: 6px;
+  background: var(--bg-surface); color: var(--text-primary);
+}
+@media (max-width: 900px) { .analyze-impact-grid { grid-template-columns: 1fr; } }
+
+.analyze-pw-draft { padding-top: 14px; border-top: 1px solid var(--divider-subtle); }
+.analyze-pw-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 6px; }
+.analyze-pw-file {
+  font-family: ui-monospace, "SF Mono", Consolas, monospace; font-size: 12px;
+  color: var(--text-primary); word-break: break-all;
+}
+.analyze-pw-hint { font-size: 12px; color: var(--text-muted); line-height: 1.6; margin: 8px 0 0; }
+
+.analyze-disposition-note {
+  font-size: 12px; color: var(--text-muted); line-height: 1.6;
+  margin: 14px 0 0; padding-top: 12px; border-top: 1px solid var(--divider-subtle);
+}

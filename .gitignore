@@ -1,0 +1,56 @@
+# ===================================================================
+# repo นี้เก็บเฉพาะ "ไฟล์งาน" (โค้ด) — เอกสาร/เล่ม/ข้อมูล ไม่ขึ้น GitHub
+# วิธีคิด: กันทุกอย่างไว้ก่อน แล้วค่อยเปิดทีละไฟล์ที่ต้องการ
+# ไฟล์ใหม่ที่สร้างขึ้นจะไม่หลุดขึ้น repo เอง ต้องมาเพิ่มบรรทัด ! ที่นี่
+# ===================================================================
+/*
+
+# --- ไฟล์ของ repo เอง ---
+!/.gitignore
+!/README.md
+!/requirements.txt
+
+# --- กลุ่ม A: ตัวระบบ ---
+!/syslog_server.py
+!/diagnose_worker.py
+!/analyze_pending.py
+!/fault_injection.py
+!/inject_menu.py
+!/c06_congestion.py
+!/show_tickets.py
+!/reset_tickets.py
+!/check_clock.py
+!/check_access.py
+!/setup_customer_lan.py
+!/lib/
+!/dashboard/
+!/0_check_clock.bat
+!/1_start_server.bat
+!/2_start_diagnose.bat
+!/3_start_dashboard_api.bat
+!/4_open_dashboard.bat
+!/5_inject_fault.bat
+!/6_analyze_pending.bat
+!/7_show_tickets.bat
+!/8_reset_tickets.bat
+
+# --- กลุ่ม B: สคริปต์ทดสอบ / วัดผล ---
+!/measure_latency.py
+!/run_latency_batch.py
+!/run_ground_truth_batch.py
+!/test_dispositions.py
+!/check_disposition.py
+!/replay_syslog.py
+!/testcases/
+!/tools/
+
+# --- ภายในโฟลเดอร์ที่เปิดไว้ ก็ยังต้องกันสิ่งเหล่านี้ ---
+__pycache__/
+*.pyc
+*.log
+*.db
+*.db-wal
+*.db-shm
+
+# รหัสเข้า Router ใน lab — ใช้ lib/lab_secrets.example.py เป็นแม่แบบแทน
+lib/lab_secrets.py
